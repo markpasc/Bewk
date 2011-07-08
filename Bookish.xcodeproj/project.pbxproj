@@ -14,6 +14,8 @@
 		2968C6ED13C68A00009342DC /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = 2968C6EC13C68A00009342DC /* Book.m */; };
 		2968C6F013C68A00009342DC /* Book.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2968C6EE13C68A00009342DC /* Book.xib */; };
 		2968C6F313C68A00009342DC /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2968C6F113C68A00009342DC /* MainMenu.xib */; };
+		2968C70613C68F95009342DC /* ZipEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 2968C70413C68F94009342DC /* ZipEntry.m */; };
+		29FB981F13C6BC6D009044B0 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29FB981E13C6BC6D009044B0 /* WebKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,15 +24,18 @@
 		2968C6DC13C68A00009342DC /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		2968C6DD13C68A00009342DC /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		2968C6DE13C68A00009342DC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		2968C6E113C68A00009342DC /* Bookish-Info.plist */ = {isa = PBXFileReference; path = "Bookish-Info.plist"; sourceTree = "<group>"; };
+		2968C6E113C68A00009342DC /* Bookish-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Bookish-Info.plist"; sourceTree = "<group>"; };
 		2968C6E313C68A00009342DC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2968C6E513C68A00009342DC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		2968C6E713C68A00009342DC /* Bookish-Prefix.pch */ = {isa = PBXFileReference; path = "Bookish-Prefix.pch"; sourceTree = "<group>"; };
+		2968C6E713C68A00009342DC /* Bookish-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bookish-Prefix.pch"; sourceTree = "<group>"; };
 		2968C6E913C68A00009342DC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		2968C6EB13C68A00009342DC /* Book.h */ = {isa = PBXFileReference; path = Book.h; sourceTree = "<group>"; };
+		2968C6EB13C68A00009342DC /* Book.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Book.h; sourceTree = "<group>"; };
 		2968C6EC13C68A00009342DC /* Book.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Book.m; sourceTree = "<group>"; };
 		2968C6EF13C68A00009342DC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Book.xib; sourceTree = "<group>"; };
 		2968C6F213C68A00009342DC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		2968C70313C68F94009342DC /* ZipEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipEntry.h; sourceTree = "<group>"; };
+		2968C70413C68F94009342DC /* ZipEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZipEntry.m; sourceTree = "<group>"; };
+		29FB981E13C6BC6D009044B0 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29FB981F13C6BC6D009044B0 /* WebKit.framework in Frameworks */,
 				2968C6DA13C68A00009342DC /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -66,6 +72,7 @@
 			isa = PBXGroup;
 			children = (
 				2968C6D913C68A00009342DC /* Cocoa.framework */,
+				29FB981E13C6BC6D009044B0 /* WebKit.framework */,
 				2968C6DB13C68A00009342DC /* Other Frameworks */,
 			);
 			name = Frameworks;
@@ -84,6 +91,8 @@
 		2968C6DF13C68A00009342DC /* Bookish */ = {
 			isa = PBXGroup;
 			children = (
+				2968C70313C68F94009342DC /* ZipEntry.h */,
+				2968C70413C68F94009342DC /* ZipEntry.m */,
 				2968C6EB13C68A00009342DC /* Book.h */,
 				2968C6EC13C68A00009342DC /* Book.m */,
 				2968C6EE13C68A00009342DC /* Book.xib */,
@@ -168,6 +177,7 @@
 			files = (
 				2968C6E613C68A00009342DC /* main.m in Sources */,
 				2968C6ED13C68A00009342DC /* Book.m in Sources */,
+				2968C70613C68F95009342DC /* ZipEntry.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,6 +305,7 @@
 				2968C6F813C68A00009342DC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
