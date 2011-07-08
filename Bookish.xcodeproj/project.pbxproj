@@ -1,0 +1,302 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2968C6DA13C68A00009342DC /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2968C6D913C68A00009342DC /* Cocoa.framework */; };
+		2968C6E413C68A00009342DC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2968C6E213C68A00009342DC /* InfoPlist.strings */; };
+		2968C6E613C68A00009342DC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2968C6E513C68A00009342DC /* main.m */; };
+		2968C6EA13C68A00009342DC /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2968C6E813C68A00009342DC /* Credits.rtf */; };
+		2968C6ED13C68A00009342DC /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = 2968C6EC13C68A00009342DC /* Book.m */; };
+		2968C6F013C68A00009342DC /* Book.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2968C6EE13C68A00009342DC /* Book.xib */; };
+		2968C6F313C68A00009342DC /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2968C6F113C68A00009342DC /* MainMenu.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2968C6D513C68A00009342DC /* Bookish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bookish.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2968C6D913C68A00009342DC /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		2968C6DC13C68A00009342DC /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		2968C6DD13C68A00009342DC /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		2968C6DE13C68A00009342DC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		2968C6E113C68A00009342DC /* Bookish-Info.plist */ = {isa = PBXFileReference; path = "Bookish-Info.plist"; sourceTree = "<group>"; };
+		2968C6E313C68A00009342DC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		2968C6E513C68A00009342DC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2968C6E713C68A00009342DC /* Bookish-Prefix.pch */ = {isa = PBXFileReference; path = "Bookish-Prefix.pch"; sourceTree = "<group>"; };
+		2968C6E913C68A00009342DC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		2968C6EB13C68A00009342DC /* Book.h */ = {isa = PBXFileReference; path = Book.h; sourceTree = "<group>"; };
+		2968C6EC13C68A00009342DC /* Book.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Book.m; sourceTree = "<group>"; };
+		2968C6EF13C68A00009342DC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Book.xib; sourceTree = "<group>"; };
+		2968C6F213C68A00009342DC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2968C6D213C68A00009342DC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2968C6DA13C68A00009342DC /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2968C6CA13C68A00009342DC = {
+			isa = PBXGroup;
+			children = (
+				2968C6DF13C68A00009342DC /* Bookish */,
+				2968C6D813C68A00009342DC /* Frameworks */,
+				2968C6D613C68A00009342DC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2968C6D613C68A00009342DC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2968C6D513C68A00009342DC /* Bookish.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2968C6D813C68A00009342DC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2968C6D913C68A00009342DC /* Cocoa.framework */,
+				2968C6DB13C68A00009342DC /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2968C6DB13C68A00009342DC /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2968C6DC13C68A00009342DC /* AppKit.framework */,
+				2968C6DD13C68A00009342DC /* CoreData.framework */,
+				2968C6DE13C68A00009342DC /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		2968C6DF13C68A00009342DC /* Bookish */ = {
+			isa = PBXGroup;
+			children = (
+				2968C6EB13C68A00009342DC /* Book.h */,
+				2968C6EC13C68A00009342DC /* Book.m */,
+				2968C6EE13C68A00009342DC /* Book.xib */,
+				2968C6F113C68A00009342DC /* MainMenu.xib */,
+				2968C6E013C68A00009342DC /* Supporting Files */,
+			);
+			path = Bookish;
+			sourceTree = "<group>";
+		};
+		2968C6E013C68A00009342DC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2968C6E113C68A00009342DC /* Bookish-Info.plist */,
+				2968C6E213C68A00009342DC /* InfoPlist.strings */,
+				2968C6E513C68A00009342DC /* main.m */,
+				2968C6E713C68A00009342DC /* Bookish-Prefix.pch */,
+				2968C6E813C68A00009342DC /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2968C6D413C68A00009342DC /* Bookish */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2968C6F613C68A00009342DC /* Build configuration list for PBXNativeTarget "Bookish" */;
+			buildPhases = (
+				2968C6D113C68A00009342DC /* Sources */,
+				2968C6D213C68A00009342DC /* Frameworks */,
+				2968C6D313C68A00009342DC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Bookish;
+			productName = Bookish;
+			productReference = 2968C6D513C68A00009342DC /* Bookish.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2968C6CC13C68A00009342DC /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 2968C6CF13C68A00009342DC /* Build configuration list for PBXProject "Bookish" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 2968C6CA13C68A00009342DC;
+			productRefGroup = 2968C6D613C68A00009342DC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2968C6D413C68A00009342DC /* Bookish */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2968C6D313C68A00009342DC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2968C6E413C68A00009342DC /* InfoPlist.strings in Resources */,
+				2968C6EA13C68A00009342DC /* Credits.rtf in Resources */,
+				2968C6F013C68A00009342DC /* Book.xib in Resources */,
+				2968C6F313C68A00009342DC /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2968C6D113C68A00009342DC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2968C6E613C68A00009342DC /* main.m in Sources */,
+				2968C6ED13C68A00009342DC /* Book.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		2968C6E213C68A00009342DC /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2968C6E313C68A00009342DC /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		2968C6E813C68A00009342DC /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2968C6E913C68A00009342DC /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		2968C6EE13C68A00009342DC /* Book.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2968C6EF13C68A00009342DC /* en */,
+			);
+			name = Book.xib;
+			sourceTree = "<group>";
+		};
+		2968C6F113C68A00009342DC /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2968C6F213C68A00009342DC /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2968C6F413C68A00009342DC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		2968C6F513C68A00009342DC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		2968C6F713C68A00009342DC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Bookish/Bookish-Prefix.pch";
+				INFOPLIST_FILE = "Bookish/Bookish-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		2968C6F813C68A00009342DC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Bookish/Bookish-Prefix.pch";
+				INFOPLIST_FILE = "Bookish/Bookish-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2968C6CF13C68A00009342DC /* Build configuration list for PBXProject "Bookish" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2968C6F413C68A00009342DC /* Debug */,
+				2968C6F513C68A00009342DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2968C6F613C68A00009342DC /* Build configuration list for PBXNativeTarget "Bookish" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2968C6F713C68A00009342DC /* Debug */,
+				2968C6F813C68A00009342DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2968C6CC13C68A00009342DC /* Project object */;
+}
