@@ -14,7 +14,6 @@
 		2968C6ED13C68A00009342DC /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = 2968C6EC13C68A00009342DC /* Book.m */; };
 		2968C6F013C68A00009342DC /* Book.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2968C6EE13C68A00009342DC /* Book.xib */; };
 		2968C6F313C68A00009342DC /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2968C6F113C68A00009342DC /* MainMenu.xib */; };
-		2968C70613C68F95009342DC /* ZipEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 2968C70413C68F94009342DC /* ZipEntry.m */; };
 		29FB981F13C6BC6D009044B0 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29FB981E13C6BC6D009044B0 /* WebKit.framework */; };
 		29FB985713CD0833009044B0 /* ZipKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29FB984D13CD069E009044B0 /* ZipKit.framework */; };
 /* End PBXBuildFile section */
@@ -58,8 +57,6 @@
 		2968C6EC13C68A00009342DC /* Book.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Book.m; sourceTree = "<group>"; };
 		2968C6EF13C68A00009342DC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Book.xib; sourceTree = "<group>"; };
 		2968C6F213C68A00009342DC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		2968C70313C68F94009342DC /* ZipEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipEntry.h; sourceTree = "<group>"; };
-		2968C70413C68F94009342DC /* ZipEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZipEntry.m; sourceTree = "<group>"; };
 		29FB981E13C6BC6D009044B0 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		29FB983113CD069D009044B0 /* ZipKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ZipKit.xcodeproj; path = zipkit/ZipKit.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -119,8 +116,6 @@
 		2968C6DF13C68A00009342DC /* Bookish */ = {
 			isa = PBXGroup;
 			children = (
-				2968C70313C68F94009342DC /* ZipEntry.h */,
-				2968C70413C68F94009342DC /* ZipEntry.m */,
 				2968C6EB13C68A00009342DC /* Book.h */,
 				2968C6EC13C68A00009342DC /* Book.m */,
 				2968C6EE13C68A00009342DC /* Book.xib */,
@@ -245,7 +240,6 @@
 			files = (
 				2968C6E613C68A00009342DC /* main.m in Sources */,
 				2968C6ED13C68A00009342DC /* Book.m in Sources */,
-				2968C70613C68F95009342DC /* ZipEntry.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

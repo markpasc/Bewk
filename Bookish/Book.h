@@ -7,12 +7,16 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "ZipEntry.h"
+#import <WebKit/WebKit.h>
+#import <ZipKit/ZKDataArchive.h>
+
+
 
 @class WebView;
 
 @interface Book : NSDocument {
-    ZipEntry *rootEntry;
+    ZKDataArchive *archive;
+    NSXMLDocument *content;
     IBOutlet WebView *webview;
 }
 
