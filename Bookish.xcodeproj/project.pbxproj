@@ -16,7 +16,32 @@
 		2968C6F313C68A00009342DC /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2968C6F113C68A00009342DC /* MainMenu.xib */; };
 		2968C70613C68F95009342DC /* ZipEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 2968C70413C68F94009342DC /* ZipEntry.m */; };
 		29FB981F13C6BC6D009044B0 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29FB981E13C6BC6D009044B0 /* WebKit.framework */; };
+		29FB985713CD0833009044B0 /* ZipKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29FB984D13CD069E009044B0 /* ZipKit.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		29FB984C13CD069E009044B0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29FB983113CD069D009044B0 /* ZipKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8DC2EF5B0486A6940098B216;
+			remoteInfo = ZipKit;
+		};
+		29FB984E13CD069E009044B0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29FB983113CD069D009044B0 /* ZipKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CB9B9CB6109F665C003E3F8B;
+			remoteInfo = zipkit;
+		};
+		29FB985013CD069E009044B0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29FB983113CD069D009044B0 /* ZipKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CB9B9CEE109F6769003E3F8B;
+			remoteInfo = touchzipkit;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		2968C6D513C68A00009342DC /* Bookish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bookish.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -36,6 +61,7 @@
 		2968C70313C68F94009342DC /* ZipEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipEntry.h; sourceTree = "<group>"; };
 		2968C70413C68F94009342DC /* ZipEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZipEntry.m; sourceTree = "<group>"; };
 		29FB981E13C6BC6D009044B0 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		29FB983113CD069D009044B0 /* ZipKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ZipKit.xcodeproj; path = zipkit/ZipKit.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +71,7 @@
 			files = (
 				29FB981F13C6BC6D009044B0 /* WebKit.framework in Frameworks */,
 				2968C6DA13C68A00009342DC /* Cocoa.framework in Frameworks */,
+				29FB985713CD0833009044B0 /* ZipKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,6 +81,7 @@
 		2968C6CA13C68A00009342DC = {
 			isa = PBXGroup;
 			children = (
+				29FB983113CD069D009044B0 /* ZipKit.xcodeproj */,
 				2968C6DF13C68A00009342DC /* Bookish */,
 				2968C6D813C68A00009342DC /* Frameworks */,
 				2968C6D613C68A00009342DC /* Products */,
@@ -114,6 +142,16 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		29FB983213CD069D009044B0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				29FB984D13CD069E009044B0 /* ZipKit.framework */,
+				29FB984F13CD069E009044B0 /* libzipkit.a */,
+				29FB985113CD069E009044B0 /* libtouchzipkit.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -149,12 +187,42 @@
 			mainGroup = 2968C6CA13C68A00009342DC;
 			productRefGroup = 2968C6D613C68A00009342DC /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 29FB983213CD069D009044B0 /* Products */;
+					ProjectRef = 29FB983113CD069D009044B0 /* ZipKit.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				2968C6D413C68A00009342DC /* Bookish */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		29FB984D13CD069E009044B0 /* ZipKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ZipKit.framework;
+			remoteRef = 29FB984C13CD069E009044B0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		29FB984F13CD069E009044B0 /* libzipkit.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libzipkit.a;
+			remoteRef = 29FB984E13CD069E009044B0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		29FB985113CD069E009044B0 /* libtouchzipkit.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libtouchzipkit.a;
+			remoteRef = 29FB985013CD069E009044B0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		2968C6D313C68A00009342DC /* Resources */ = {
