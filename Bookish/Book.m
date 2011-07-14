@@ -56,27 +56,52 @@
 
     archive = [ZKDataArchive archiveWithArchiveData:(NSMutableData*)data];
     if (!archive) {
+        NSLog(@"Could not open archive for data");
         return NO;
     }
 
-    // TODO: Check out the META-INF/container.xml?
-
-    // Load the OEBPS/content.opf.
-    ZKCDHeader *contentHeader = nil;
+    // Check the META-INF/container.xml for where the OPF document is.
+    ZKCDHeader *header = nil;
     for (ZKCDHeader *entry in archive.centralDirectory) {
-        if ([entry.filename isEqualToString:@"OEBPS/content.opf"]) {
-            contentHeader = entry;
+        if ([entry.filename isEqualToString:@"META-INF/container.xml"]) {
+            header = entry;
             break;
         }
     }
-    if (!contentHeader) {
+    if (!header) {
+        NSLog(@"Could not find META-INF/container.xml file");
         return NO;
     }
 
     NSDictionary *contentAttr = nil;
     NSError *error = nil;
-    content = [[NSXMLDocument alloc] initWithData:[archive inflateFile:contentHeader attributes:&contentAttr] options:0 error:&error];
+    content = [[NSXMLDocument alloc] initWithData:[archive inflateFile:header attributes:&contentAttr] options:0 error:&error];
     if (error) {
+        NSLog(@"Error parsing META-INF/container.xml");
+        outError = &error;
+        return NO;
+    }
+
+    NSArray *result = [[content rootElement] objectsForXQuery:@"./rootfiles/rootfile[@media-type=\"application/oebps-package+xml\"]/@full-path" error:&error];
+    if (!result) {
+        NSLog(@"Error finding OPF file");
+        outError = &error;
+        return NO;
+    }
+    if ([result count] < 1) {
+        NSLog(@"Queried for OPF files okay but didn't find any");
+        return NO;
+    }
+
+    // Load the OPF document.
+    for (ZKCDHeader *entry in archive.centralDirectory) {
+        if ([entry.filename isEqualToString:[result objectAtIndex:0]]) {
+            header = entry;
+            break;
+        }
+    }
+    if (!header) {
+        NSLog(@"Didn't find the referenced OPF document in the archive");
         return NO;
     }
 
