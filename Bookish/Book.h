@@ -17,6 +17,8 @@
 @interface Book : NSDocument {
     ZKDataArchive *archive;
     NSXMLDocument *content;
+    NSString *title;
+
     IBOutlet WebView *webview;
 }
 

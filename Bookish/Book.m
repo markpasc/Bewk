@@ -39,6 +39,10 @@
     [[webview mainFrame] loadHTMLString:@"hi" baseURL:[NSURL URLWithString:@"http://www.example.com/"]];
 }
 
+- (NSString *)displayName {
+    return title ? title : @"Untitled";
+}
+
 - (NSData *)dataOfType:(NSString *)typeName error:(NSError **)outError
 {
     /*
@@ -47,6 +51,15 @@
     */
     if (outError) {
         *outError = [NSError errorWithDomain:NSOSStatusErrorDomain code:unimpErr userInfo:NULL];
+    }
+    return nil;
+}
+
+- (ZKCDHeader *)entryForFilename:(NSString *)filename {
+    for (ZKCDHeader *entry in archive.centralDirectory) {
+        if ([entry.filename isEqualToString:filename]) {
+            return entry;
+        }
     }
     return nil;
 }
@@ -61,13 +74,7 @@
     }
 
     // Check the META-INF/container.xml for where the OPF document is.
-    ZKCDHeader *header = nil;
-    for (ZKCDHeader *entry in archive.centralDirectory) {
-        if ([entry.filename isEqualToString:@"META-INF/container.xml"]) {
-            header = entry;
-            break;
-        }
-    }
+    ZKCDHeader *header = [self entryForFilename:@"META-INF/container.xml"];
     if (!header) {
         NSLog(@"Could not find META-INF/container.xml file");
         return NO;
@@ -75,14 +82,14 @@
 
     NSDictionary *contentAttr = nil;
     NSError *error = nil;
-    content = [[NSXMLDocument alloc] initWithData:[archive inflateFile:header attributes:&contentAttr] options:0 error:&error];
+    NSXMLDocument *container = [[NSXMLDocument alloc] initWithData:[archive inflateFile:header attributes:&contentAttr] options:0 error:&error];
     if (error) {
         NSLog(@"Error parsing META-INF/container.xml");
         outError = &error;
         return NO;
     }
 
-    NSArray *result = [[content rootElement] objectsForXQuery:@"./rootfiles/rootfile[@media-type=\"application/oebps-package+xml\"]/@full-path" error:&error];
+    NSArray *result = [[container rootElement] objectsForXQuery:@"./rootfiles/rootfile[@media-type=\"application/oebps-package+xml\"]/@full-path" error:&error];
     if (!result) {
         NSLog(@"Error finding OPF file");
         outError = &error;
@@ -94,16 +101,36 @@
     }
 
     // Load the OPF document.
-    for (ZKCDHeader *entry in archive.centralDirectory) {
-        if ([entry.filename isEqualToString:[result objectAtIndex:0]]) {
-            header = entry;
-            break;
-        }
-    }
+    NSString *opfFilename = [[result objectAtIndex:0] stringValue];
+    NSLog(@"Looking for OPF file %@", opfFilename);
+    header = [self entryForFilename:opfFilename];
     if (!header) {
         NSLog(@"Didn't find the referenced OPF document in the archive");
         return NO;
     }
+
+    content = [[NSXMLDocument alloc] initWithData:[archive inflateFile:header attributes:&contentAttr] options:0 error:&error];
+    if (error) {
+        NSLog(@"Error parsing the OPF document");
+        outError = &error;
+        return NO;
+    }
+
+    NSString *query = @"./metadata/*[local-name()=\"title\"]/text()";
+    result = [[content rootElement] objectsForXQuery:query error:&error];
+    if (!result) {
+        NSLog(@"Couldn't find dc:title in OPF");
+        outError = &error;
+        return NO;
+    }
+    if ([result count] < 1) {
+        NSLog(@"Queried for dc:title okay but didn't find one");
+        return NO;
+    }
+
+    title = [[result objectAtIndex:0] stringValue];
+
+    // Check the OPF document for where the TOC is.
 
     return YES;
 }
