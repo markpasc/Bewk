@@ -11,15 +11,17 @@
 #import <ZipKit/ZKDataArchive.h>
 
 
-
-@class WebView;
-
 @interface Book : NSDocument {
     ZKDataArchive *archive;
     NSXMLDocument *content;
     NSString *title;
+    NSArray *spine;
+    NSDictionary *manifest;
+    NSUInteger currentItem;
 
     IBOutlet WebView *webview;
 }
+
+- (NSData *)dataForResourcePath:(NSString *)path contentType:(NSString **)contentType;
 
 @end

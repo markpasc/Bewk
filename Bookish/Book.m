@@ -8,7 +8,15 @@
 
 #import "Book.h"
 #import <ZipKit/ZKCDHeader.h>
+#import "BookProtocol.h"
 
+
+@interface Book ()
+
+- (void)updateWebView;
+- (ZKCDHeader *)entryForFilename:(NSString *)filename;
+
+@end
 
 
 @implementation Book
@@ -34,9 +42,22 @@
 {
     [super windowControllerDidLoadNib:aController];
 
-    // Add any code here that needs to be executed once the windowController has loaded the document's window.
     NSLog(@"~LOADED! WEB VIEW IS %@~", webview);
-    [[webview mainFrame] loadHTMLString:@"hi" baseURL:[NSURL URLWithString:@"http://www.example.com/"]];
+
+    // What's the first page in the book?
+    currentItem = 0;
+    [self updateWebView];
+}
+
+- (void)updateWebView {
+    NSXMLElement *first = [spine objectAtIndex:currentItem];
+    if (!first) return;
+    NSXMLNode *node = [first attributeForName:@"href"];
+    if (!node) return;
+
+    NSString *bookUrl = [NSString stringWithFormat:@"bookishbook:///%@",[node stringValue]];
+    NSLog(@"Loading up URL %@ in webview!", bookUrl);
+    [webview setMainFrameURL:bookUrl];
 }
 
 - (NSString *)displayName {
@@ -64,6 +85,28 @@
     return nil;
 }
 
+- (NSData *)dataForResourcePath:(NSString *)path contentType:(NSString **)contentType {
+    NSString *filename = [NSString stringWithFormat:@"OEBPS/%@",path];
+
+    ZKCDHeader *header = [self entryForFilename:filename];
+    if (!header) {
+        return nil;
+    }
+
+    // What's the content type?
+    for (id item in [manifest objectEnumerator]) {
+        NSXMLElement *manifestItem = (NSXMLElement *)item;
+        NSXMLNode *idNode = [manifestItem attributeForName:@"href"];
+        if ([[idNode stringValue] isEqualToString:path]) {
+            *contentType = [[manifestItem attributeForName:@"media-type"] stringValue];
+        }
+    }
+
+    NSDictionary *contentAttr;
+    NSData *data = [[archive inflateFile:header attributes:&contentAttr] autorelease];
+    return data;
+}
+
 - (BOOL)readFromData:(NSData *)data ofType:(NSString *)typeName error:(NSError **)outError {
     NSLog(@"~READ FROM DATA~");
 
@@ -85,18 +128,18 @@
     NSXMLDocument *container = [[NSXMLDocument alloc] initWithData:[archive inflateFile:header attributes:&contentAttr] options:0 error:&error];
     if (error) {
         NSLog(@"Error parsing META-INF/container.xml");
-        outError = &error;
+        *outError = error;
         return NO;
     }
 
     NSArray *result = [[container rootElement] objectsForXQuery:@"./rootfiles/rootfile[@media-type=\"application/oebps-package+xml\"]/@full-path" error:&error];
     if (!result) {
-        NSLog(@"Error finding OPF file");
-        outError = &error;
+        NSLog(@"Couldn't query for OPF filename");
+        *outError = error;
         return NO;
     }
     if ([result count] < 1) {
-        NSLog(@"Queried for OPF files okay but didn't find any");
+        NSLog(@"Queried for OPF filename okay but didn't find any");
         return NO;
     }
 
@@ -112,15 +155,15 @@
     content = [[NSXMLDocument alloc] initWithData:[archive inflateFile:header attributes:&contentAttr] options:0 error:&error];
     if (error) {
         NSLog(@"Error parsing the OPF document");
-        outError = &error;
+        *outError = error;
         return NO;
     }
 
     NSString *query = @"./metadata/*[local-name()=\"title\"]/text()";
     result = [[content rootElement] objectsForXQuery:query error:&error];
     if (!result) {
-        NSLog(@"Couldn't find dc:title in OPF");
-        outError = &error;
+        NSLog(@"Couldn't query dc:title in OPF");
+        *outError = error;
         return NO;
     }
     if ([result count] < 1) {
@@ -130,9 +173,63 @@
 
     title = [[result objectAtIndex:0] stringValue];
 
-    // Check the OPF document for where the TOC is.
+    result = [[content rootElement] nodesForXPath:@"./manifest/item" error:&error];
+    if (!result) {
+        NSLog(@"Couldn't query for manifest items in OPF");
+        *outError = error;
+        return NO;
+    }
+    if ([result count] < 1) {
+        NSLog(@"Queried for manifest items but didn't find any: %@", result);
+        return NO;
+    }
+
+    NSMutableDictionary *manifestItems = [[NSMutableDictionary alloc] init];
+    for (id item in result) {
+        NSXMLElement *manifestItem = (NSXMLElement *)item;
+        NSXMLNode *idNode = [manifestItem attributeForName:@"id"];
+        [manifestItems setObject:manifestItem forKey:[idNode stringValue]];
+    }
+    manifest = [NSDictionary dictionaryWithDictionary:manifestItems];
+
+    result = [[content rootElement] objectsForXQuery:@"./spine/itemref" error:&error];
+    if (!result) {
+        NSLog(@"Couldn't query for spine items in OPF");
+        *outError = error;
+        return NO;
+    }
+    if ([result count] < 1) {
+        NSLog(@"Queried for spine items but didn't find any!");
+        return NO;
+    }
+
+    NSMutableArray *metaspine = [[NSMutableArray alloc] initWithCapacity:[result count]];
+    for (id item in result) {
+        NSXMLElement *spineItem = (NSXMLElement *)item;
+        NSXMLNode *idNode = [spineItem attributeForName:@"idref"];
+        NSXMLElement *manifestItem = [manifestItems objectForKey:[idNode stringValue]];
+        if (!manifestItem) {
+            NSLog(@"OOPS spine referred to item %@ that isn't in manifest anymore?", [idNode stringValue]);
+            continue;
+        }
+        [metaspine addObject:manifestItem];
+    }
+    spine = [NSArray arrayWithArray:metaspine];
 
     return YES;
+}
+
+-(NSURLRequest *)webView:(WebView *)sender resource:(id)identifier willSendRequest:(NSURLRequest *)request redirectResponse:(NSURLResponse *)redirectResponse fromDataSource:(WebDataSource *)dataSource {
+    NSLog(@"O HAI webview will send request");
+    if (![BookProtocol canInitWithRequest:request]) {
+        NSLog(@"Oops, request %@ is not a book protocol request", request);
+        return request;
+    }
+
+    NSMutableURLRequest *bookRequest = [[request mutableCopy] autorelease];
+    [bookRequest setBookProtocolBook:self];
+    NSLog(@"Yay, set a new book request %@ with bookself saved in it wewt", bookRequest);
+    return bookRequest;
 }
 
 @end
