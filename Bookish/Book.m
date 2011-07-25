@@ -21,7 +21,7 @@
 
 @implementation Book
 
-@synthesize archive, content, title, spine, manifest;
+@synthesize archive, content, title, spine, manifest, contr;
 
 - (id)init
 {
@@ -31,6 +31,21 @@
         // If an error occurs here, return nil.
     }
     return self;
+}
+
+- (void)makeWindowControllers {
+    NSString *nibname = [self windowNibName];
+    if (!nibname)
+        return;
+
+    BookWindowController *derp = [[BookWindowController alloc] initWithWindowNibName:nibname];
+    self.contr = derp;
+    [derp release];
+
+    contr.document = self;
+    [self addWindowController:contr];
+
+    [contr window];
 }
 
 - (NSString *)windowNibName
@@ -44,11 +59,15 @@
 {
     [super windowControllerDidLoadNib:aController];
 
-    NSLog(@"~LOADED! WEB VIEW IS %@~", webview);
+    NSLog(@"~LOADED! WEB VIEW IS %@~", self.webview);
 
     // What's the first page in the book?
     currentItem = 0;
     [self updateWebView];
+}
+
+- (WebView *)webview {
+    return self.contr.webview;
 }
 
 - (void)updateWebView {
@@ -59,7 +78,7 @@
 
     NSString *bookUrl = [NSString stringWithFormat:@"bookishbook:///%@",[node stringValue]];
     NSLog(@"Loading up URL %@ in webview!", bookUrl);
-    [webview setMainFrameURL:bookUrl];
+    [self.webview setMainFrameURL:bookUrl];
 }
 
 - (NSString *)displayName {
@@ -177,6 +196,7 @@
     }
 
     self.title = [[result objectAtIndex:0] stringValue];
+    NSLog(@"Found book title \"%@\"", self.title);
 
     result = [[content rootElement] nodesForXPath:@"./manifest/item" error:&error];
     if (!result) {
@@ -196,6 +216,7 @@
         [manifestItems setObject:manifestItem forKey:[idNode stringValue]];
     }
     self.manifest = [NSDictionary dictionaryWithDictionary:manifestItems];
+    NSLog(@"Build manifest for %@", self.title);
 
     result = [[content rootElement] objectsForXQuery:@"./spine/itemref" error:&error];
     if (!result) {
@@ -226,20 +247,8 @@
     self.spine = [NSArray arrayWithArray:metaspine];
     [metaspine release];
 
+    NSLog(@"Builtified spine too, all done loading %@", self.title);
     return YES;
-}
-
--(NSURLRequest *)webView:(WebView *)sender resource:(id)identifier willSendRequest:(NSURLRequest *)request redirectResponse:(NSURLResponse *)redirectResponse fromDataSource:(WebDataSource *)dataSource {
-    NSLog(@"O HAI webview will send request");
-    if (![BookProtocol canInitWithRequest:request]) {
-        NSLog(@"Oops, request %@ is not a book protocol request", request);
-        return request;
-    }
-
-    NSMutableURLRequest *bookRequest = [[request mutableCopy] autorelease];
-    [bookRequest setBookProtocolBook:self];
-    NSLog(@"Yay, set a new book request %@ with bookself saved in it wewt", bookRequest);
-    return bookRequest;
 }
 
 @end

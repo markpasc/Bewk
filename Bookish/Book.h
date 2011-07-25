@@ -9,6 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import <WebKit/WebKit.h>
 #import <ZipKit/ZKDataArchive.h>
+#import "BookWindowController.h"
 
 
 @interface Book : NSDocument {
@@ -19,7 +20,9 @@
     NSDictionary *manifest;
     NSUInteger currentItem;
 
-    IBOutlet WebView *webview;
+    BookWindowController *contr;
+
+    //IBOutlet WebView *webview;
 }
 
 - (NSData *)dataForResourcePath:(NSString *)path contentType:(NSString **)contentType;
@@ -29,5 +32,7 @@
 @property (retain) NSString *title;
 @property (retain) NSArray *spine;
 @property (retain) NSDictionary *manifest;
+@property (retain) BookWindowController *contr;
+@property (readonly) WebView *webview;
 
 @end
