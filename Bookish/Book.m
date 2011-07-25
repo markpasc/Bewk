@@ -21,6 +21,8 @@
 
 @implementation Book
 
+@synthesize archive, content, title, spine, manifest;
+
 - (id)init
 {
     self = [super init];
@@ -103,14 +105,14 @@
     }
 
     NSDictionary *contentAttr;
-    NSData *data = [[archive inflateFile:header attributes:&contentAttr] autorelease];
+    NSData *data = [archive inflateFile:header attributes:&contentAttr];
     return data;
 }
 
 - (BOOL)readFromData:(NSData *)data ofType:(NSString *)typeName error:(NSError **)outError {
     NSLog(@"~READ FROM DATA~");
 
-    archive = [ZKDataArchive archiveWithArchiveData:(NSMutableData*)data];
+    self.archive = [ZKDataArchive archiveWithArchiveData:(NSMutableData*)data];
     if (!archive) {
         NSLog(@"Could not open archive for data");
         return NO;
@@ -124,18 +126,21 @@
     }
 
     NSDictionary *contentAttr = nil;
+    NSData *containerdoc = [archive inflateFile:header attributes:&contentAttr];
     NSError *error = nil;
-    NSXMLDocument *container = [[NSXMLDocument alloc] initWithData:[archive inflateFile:header attributes:&contentAttr] options:0 error:&error];
+    NSXMLDocument *container = [[NSXMLDocument alloc] initWithData:containerdoc options:0 error:&error];
     if (error) {
         NSLog(@"Error parsing META-INF/container.xml");
-        *outError = error;
+        [container release];
+        if (outError) *outError = error;
         return NO;
     }
 
     NSArray *result = [[container rootElement] objectsForXQuery:@"./rootfiles/rootfile[@media-type=\"application/oebps-package+xml\"]/@full-path" error:&error];
+    [container release];
     if (!result) {
         NSLog(@"Couldn't query for OPF filename");
-        *outError = error;
+        if (outError) *outError = error;
         return NO;
     }
     if ([result count] < 1) {
@@ -152,10 +157,10 @@
         return NO;
     }
 
-    content = [[NSXMLDocument alloc] initWithData:[archive inflateFile:header attributes:&contentAttr] options:0 error:&error];
+    self.content = [[NSXMLDocument alloc] initWithData:[archive inflateFile:header attributes:&contentAttr] options:0 error:&error];
     if (error) {
         NSLog(@"Error parsing the OPF document");
-        *outError = error;
+        if (outError) *outError = error;
         return NO;
     }
 
@@ -163,7 +168,7 @@
     result = [[content rootElement] objectsForXQuery:query error:&error];
     if (!result) {
         NSLog(@"Couldn't query dc:title in OPF");
-        *outError = error;
+        if (outError) *outError = error;
         return NO;
     }
     if ([result count] < 1) {
@@ -171,12 +176,12 @@
         return NO;
     }
 
-    title = [[result objectAtIndex:0] stringValue];
+    self.title = [[result objectAtIndex:0] stringValue];
 
     result = [[content rootElement] nodesForXPath:@"./manifest/item" error:&error];
     if (!result) {
         NSLog(@"Couldn't query for manifest items in OPF");
-        *outError = error;
+        if (outError) *outError = error;
         return NO;
     }
     if ([result count] < 1) {
@@ -190,16 +195,18 @@
         NSXMLNode *idNode = [manifestItem attributeForName:@"id"];
         [manifestItems setObject:manifestItem forKey:[idNode stringValue]];
     }
-    manifest = [NSDictionary dictionaryWithDictionary:manifestItems];
+    self.manifest = [NSDictionary dictionaryWithDictionary:manifestItems];
 
     result = [[content rootElement] objectsForXQuery:@"./spine/itemref" error:&error];
     if (!result) {
         NSLog(@"Couldn't query for spine items in OPF");
-        *outError = error;
+        [manifestItems release];
+        if (outError) *outError = error;
         return NO;
     }
     if ([result count] < 1) {
         NSLog(@"Queried for spine items but didn't find any!");
+        [manifestItems release];
         return NO;
     }
 
@@ -214,7 +221,10 @@
         }
         [metaspine addObject:manifestItem];
     }
-    spine = [NSArray arrayWithArray:metaspine];
+    [manifestItems release];
+
+    self.spine = [NSArray arrayWithArray:metaspine];
+    [metaspine release];
 
     return YES;
 }

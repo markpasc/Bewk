@@ -24,4 +24,10 @@
 
 - (NSData *)dataForResourcePath:(NSString *)path contentType:(NSString **)contentType;
 
+@property (retain) ZKDataArchive *archive;
+@property (retain) NSXMLDocument *content;
+@property (retain) NSString *title;
+@property (retain) NSArray *spine;
+@property (retain) NSDictionary *manifest;
+
 @end
