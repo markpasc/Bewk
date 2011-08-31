@@ -27,6 +27,11 @@
 
 - (NSData *)dataForResourcePath:(NSString *)path contentType:(NSString **)contentType;
 
+- (void)nextPage:(NSMenuItem *)something;
+- (void)previousPage:(NSMenuItem *)something;
+- (void)nextChapter:(NSMenuItem *)something;
+- (void)previousChapter:(NSMenuItem *)something;
+
 @property (retain) ZKDataArchive *archive;
 @property (retain) NSXMLDocument *content;
 @property (retain) NSString *title;

@@ -251,4 +251,51 @@
     return YES;
 }
 
+- (void)nextPage:(NSMenuItem *)menuItem {
+    NSLog(@"~~ NEXT PAGE ~~");
+}
+
+- (void)previousPage:(NSMenuItem *)menuItem {
+    NSLog(@"~~ PREVIOUS PAGE ~~");
+}
+
+- (void)nextChapter:(NSMenuItem *)menuItem {
+    NSLog(@"~~ NEXT CHAPTER ~~");
+
+    if (currentItem >= [spine count] - 1) {
+        return;
+    }
+    currentItem += 1;
+
+    [self updateWebView];
+}
+
+- (void)previousChapter:(NSMenuItem *)menuItem {
+    NSLog(@"~~ PREVIOUS CHAPTER ~~");
+
+    if (currentItem <= 0) {
+        return;
+    }
+    currentItem -= 1;
+
+    [self updateWebView];
+}
+
+- (BOOL)validateMenuItem:(NSMenuItem *)menuItem {
+    SEL act = [menuItem action];
+    if (act == @selector(nextPage:)) {
+        return YES;
+    }
+    if (act == @selector(previousPage:)) {
+        return YES;
+    }
+    if (act == @selector(nextChapter:) && currentItem < [spine count]) {
+        return YES;
+    }
+    if (act == @selector(previousChapter:) && currentItem > 0) {
+        return YES;
+    }
+    return NO;
+}
+
 @end
