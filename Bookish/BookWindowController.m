@@ -32,6 +32,9 @@
     
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
     [self.document windowControllerDidLoadNib:self];
+
+    NSLog(@"OHAI OHAI HOAHI webview has prefs \"%@\" (user style sheet %@: %@)", [[webview preferences] identifier], [[webview preferences] userStyleSheetEnabled] ? @"ENABLED" : @"UNNOTDISENABLED", [[[webview preferences] userStyleSheetLocation] absoluteString]);
+
     [self showWindow:nil];
 }
 

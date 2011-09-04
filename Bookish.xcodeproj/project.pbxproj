@@ -15,6 +15,7 @@
 		2968C6F013C68A00009342DC /* Book.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2968C6EE13C68A00009342DC /* Book.xib */; };
 		2968C6F313C68A00009342DC /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2968C6F113C68A00009342DC /* MainMenu.xib */; };
 		29BB432813DDE484001CF52A /* BookWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29BB432713DDE484001CF52A /* BookWindowController.m */; };
+		29F6107814130F85006AD072 /* bibliotype in Resources */ = {isa = PBXBuildFile; fileRef = 29F6107614130F61006AD072 /* bibliotype */; };
 		29F79E4F13CFA7E70061E1FA /* BookProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 29F79E4E13CFA7E70061E1FA /* BookProtocol.m */; };
 		29F79E5213D01EC20061E1FA /* BookAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 29F79E5113D01EC20061E1FA /* BookAppDelegate.m */; };
 		29FB981F13C6BC6D009044B0 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29FB981E13C6BC6D009044B0 /* WebKit.framework */; };
@@ -62,6 +63,7 @@
 		2968C6F213C68A00009342DC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		29BB432613DDE484001CF52A /* BookWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookWindowController.h; sourceTree = "<group>"; };
 		29BB432713DDE484001CF52A /* BookWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookWindowController.m; sourceTree = "<group>"; };
+		29F6107614130F61006AD072 /* bibliotype */ = {isa = PBXFileReference; lastKnownFileType = folder; name = bibliotype; path = ../bibliotype; sourceTree = "<group>"; };
 		29F79E4D13CFA7E70061E1FA /* BookProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookProtocol.h; sourceTree = "<group>"; };
 		29F79E4E13CFA7E70061E1FA /* BookProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookProtocol.m; sourceTree = "<group>"; };
 		29F79E5013D01EC20061E1FA /* BookAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookAppDelegate.h; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				29F79E5113D01EC20061E1FA /* BookAppDelegate.m */,
 				2968C6EE13C68A00009342DC /* Book.xib */,
 				2968C6F113C68A00009342DC /* MainMenu.xib */,
+				29F6107614130F61006AD072 /* bibliotype */,
 				2968C6E013C68A00009342DC /* Supporting Files */,
 			);
 			path = Bookish;
@@ -187,6 +190,9 @@
 /* Begin PBXProject section */
 		2968C6CC13C68A00009342DC /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
 			buildConfigurationList = 2968C6CF13C68A00009342DC /* Build configuration list for PBXProject "Bookish" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
@@ -243,6 +249,7 @@
 				2968C6EA13C68A00009342DC /* Credits.rtf in Resources */,
 				2968C6F013C68A00009342DC /* Book.xib in Resources */,
 				2968C6F313C68A00009342DC /* MainMenu.xib in Resources */,
+				29F6107814130F85006AD072 /* bibliotype in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

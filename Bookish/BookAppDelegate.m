@@ -10,6 +10,13 @@
 #import "BookProtocol.h"
 
 
+@interface BookAppDelegate ()
+
+- (void)configureWebPreferences;
+
+@end
+
+
 @implementation BookAppDelegate
 
 - (id)init
@@ -24,6 +31,25 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification {
     [BookProtocol registerBookProtocol];
+    [self configureWebPreferences];
+}
+
+- (void)configureWebPreferences {
+    WebPreferences *prefs = [[WebPreferences alloc] initWithIdentifier:@"bookishbook"];
+    [prefs setPlugInsEnabled:NO];
+    [prefs setJavaEnabled:NO];
+    [prefs setJavaScriptEnabled:YES];
+    [prefs setJavaScriptCanOpenWindowsAutomatically:NO];
+    [prefs setUserStyleSheetEnabled:YES];
+
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"master.css" ofType:nil inDirectory:@"bibliotype/css"];
+    NSLog(@"CONFIGULATED user style path: %@", path);
+    [prefs setUserStyleSheetLocation:[NSURL fileURLWithPath:path]];
+
+    [prefs setAutosaves:NO];
+    NSLog(@"PREFITATED webprefs \"%@\"", [prefs identifier]);
+
+    [prefs release];
 }
 
 - (BOOL)applicationShouldOpenUntitledFile:(NSApplication *)sender {

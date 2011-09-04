@@ -53,12 +53,13 @@
     Book *book = [request bookProtocolBook];
     NSLog(@"Gonna load content from book %@", book);
 
-    NSString *path = [[[request URL] path] substringFromIndex:1];
-    NSLog(@"Looks like we want stuff from \"%@\"", path);
     NSString *contentType = nil;
+    NSString *path = [[[request URL] path] substringFromIndex:1];
+    NSLog(@"Looks like we want book stuff from \"%@\"", path);
     NSData *data = [book dataForResourcePath:path contentType:&contentType];
     NSLog(@"That file had %ld bytes of %@ data! Building response...", [data length], contentType);
 
+    // TODO: do i need to do something special to handle 404s?
     NSURLResponse *response = [[NSURLResponse alloc] initWithURL:[request URL] MIMEType:contentType expectedContentLength:[data length] textEncodingName:nil];
 
     id<NSURLProtocolClient> client = [self client];
