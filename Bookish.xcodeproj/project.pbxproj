@@ -168,9 +168,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		2968C6D413C68A00009342DC /* Bookish */ = {
+		2968C6D413C68A00009342DC /* Bewk */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2968C6F613C68A00009342DC /* Build configuration list for PBXNativeTarget "Bookish" */;
+			buildConfigurationList = 2968C6F613C68A00009342DC /* Build configuration list for PBXNativeTarget "Bewk" */;
 			buildPhases = (
 				2968C6D113C68A00009342DC /* Sources */,
 				2968C6D213C68A00009342DC /* Frameworks */,
@@ -180,7 +180,7 @@
 			);
 			dependencies = (
 			);
-			name = Bookish;
+			name = Bewk;
 			productName = Bookish;
 			productReference = 2968C6D513C68A00009342DC /* Bookish.app */;
 			productType = "com.apple.product-type.application";
@@ -211,7 +211,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				2968C6D413C68A00009342DC /* Bookish */,
+				2968C6D413C68A00009342DC /* Bewk */,
 			);
 		};
 /* End PBXProject section */
@@ -385,7 +385,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2968C6F613C68A00009342DC /* Build configuration list for PBXNativeTarget "Bookish" */ = {
+		2968C6F613C68A00009342DC /* Build configuration list for PBXNativeTarget "Bewk" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2968C6F713C68A00009342DC /* Debug */,
