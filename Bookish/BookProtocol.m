@@ -21,11 +21,11 @@
 }
 
 + (NSString *)bookProtocolScheme {
-    return @"bookishbook";
+    return @"bewkbook";
 }
 
 + (NSString *)bookProtocolKey {
-    return @"bookishbook";
+    return @"bewkbook";
 }
 
 + (void)registerBookProtocol {

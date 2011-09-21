@@ -134,7 +134,7 @@
     NSXMLNode *node = [first attributeForName:@"href"];
     if (!node) return;
 
-    NSString *bookUrl = [NSString stringWithFormat:@"bookishbook://book/%@",[node stringValue]];
+    NSString *bookUrl = [NSString stringWithFormat:@"%@://book/%@",[BookProtocol bookProtocolScheme],[node stringValue]];
     NSLog(@"Loading up URL %@ in webview!", bookUrl);
     [self.webview setMainFrameURL:bookUrl];
 }

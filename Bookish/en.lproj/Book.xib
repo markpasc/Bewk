@@ -89,17 +89,17 @@
 							<string key="FrameName"/>
 							<string key="GroupName"/>
 							<object class="WebPreferences" key="Preferences">
-								<string key="Identifier">bookishbook</string>
+								<string key="Identifier">bewkbook</string>
 								<object class="NSMutableDictionary" key="Values">
 									<bool key="EncodedWithXMLCoder">YES</bool>
 									<object class="NSArray" key="dict.sortedKeys">
 										<bool key="EncodedWithXMLCoder">YES</bool>
-										<string>bookishbookWebKitDefaultFixedFontSize</string>
-										<string>bookishbookWebKitDefaultFontSize</string>
-										<string>bookishbookWebKitDisplayImagesKey</string>
-										<string>bookishbookWebKitJavaEnabled</string>
-										<string>bookishbookWebKitJavaScriptCanOpenWindowsAutomatically</string>
-										<string>bookishbookWebKitMinimumFontSize</string>
+										<string>bewkbookWebKitDefaultFixedFontSize</string>
+										<string>bewkbookWebKitDefaultFontSize</string>
+										<string>bewkbookWebKitJavaEnabled</string>
+										<string>bewkbookWebKitJavaScriptCanOpenWindowsAutomatically</string>
+										<string>bewkbookWebKitMinimumFontSize</string>
+										<string>bewkbookWebKitPluginsEnabled</string>
 									</object>
 									<object class="NSMutableArray" key="dict.values">
 										<bool key="EncodedWithXMLCoder">YES</bool>
@@ -107,12 +107,12 @@
 										<integer value="12"/>
 										<boolean value="NO"/>
 										<boolean value="NO"/>
-										<boolean value="NO"/>
 										<integer value="1"/>
+										<boolean value="NO"/>
 									</object>
 								</object>
 							</object>
-							<bool key="UseBackForwardList">NO</bool>
+							<bool key="UseBackForwardList">YES</bool>
 							<bool key="AllowsUndo">YES</bool>
 						</object>
 					</object>

@@ -35,7 +35,7 @@
 }
 
 - (void)configureWebPreferences {
-    WebPreferences *prefs = [[WebPreferences alloc] initWithIdentifier:@"bookishbook"];
+    WebPreferences *prefs = [[WebPreferences alloc] initWithIdentifier:[BookProtocol bookProtocolKey]];
     [prefs setPlugInsEnabled:NO];
     [prefs setJavaEnabled:NO];
     [prefs setJavaScriptEnabled:YES];
