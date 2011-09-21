@@ -21,7 +21,7 @@
 
 @implementation Book
 
-@synthesize archive, content, title, spine, manifest, contr;
+@synthesize archive, content, title, spine, manifest, contr, coverIcon;
 
 - (id)init
 {
@@ -45,7 +45,8 @@
     contr.document = self;
     [self addWindowController:contr];
 
-    [contr window];
+    NSWindow *window = [contr window];
+    [window setDelegate:self];
 }
 
 - (NSString *)windowNibName
@@ -64,6 +65,60 @@
     // What's the first page in the book?
     currentItem = 0;
     [self updateWebView];
+}
+
+- (void)setAppIconToCover {
+    if (coverIcon) {
+        [NSApp setApplicationIconImage:coverIcon];
+        return;
+    }
+
+    NSXMLElement *derp = [self.manifest objectForKey:@"cover-image"];
+    if (!derp) {
+        NSLog(@"No cover-image xml element oops");
+        return;
+    }
+
+    NSString *imagepath = [[derp attributeForName:@"href"] stringValue];
+    NSLog(@"Cover image is %@", imagepath);
+    NSData *imagedata = [self dataForResourcePath:imagepath contentType:nil];
+    if (!imagedata) {
+        NSLog(@"Couldn't load data for image %@", imagepath);
+        return;
+    }
+    NSImage *rawCover = [[NSImage alloc] initWithData:imagedata];
+
+    NSBitmapImageRep *bir = [[NSBitmapImageRep alloc] initWithBitmapDataPlanes:nil pixelsWide:512 pixelsHigh:512 bitsPerSample:8 samplesPerPixel:4 hasAlpha:YES isPlanar:NO colorSpaceName:NSDeviceRGBColorSpace bytesPerRow:0 bitsPerPixel:0];
+    NSGraphicsContext *context = [NSGraphicsContext graphicsContextWithBitmapImageRep:bir];
+
+    [NSGraphicsContext saveGraphicsState];
+    [NSGraphicsContext setCurrentContext:context];
+
+    // TODO: and if the image is wider than tall?
+    CGFloat scale = 512.0 / rawCover.size.height;
+    CGFloat destWidth = rawCover.size.width * scale;
+    NSRect destRect = NSMakeRect(256.0 - destWidth / 2.0, 0.0, destWidth, 512.0);
+    [rawCover drawInRect:destRect fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
+
+    [NSGraphicsContext restoreGraphicsState];
+
+    self.coverIcon = [[NSImage alloc] initWithSize:NSMakeSize(512, 512)];
+    [coverIcon addRepresentation:bir];
+
+    [NSApp setApplicationIconImage:coverIcon];
+}
+
+- (void)windowDidBecomeMain:(NSNotification *)notification {
+    NSLog(@"~ OOPS WINDOW BECAME MAINZ ~");
+    [self setAppIconToCover];
+}
+
+- (void)windowWillClose:(NSNotification *)notification {
+    [NSApp setApplicationIconImage:nil];
+}
+
+- (void)windowWillMiniaturize:(NSNotification *)notification {
+    [NSApp setApplicationIconImage:nil];
 }
 
 - (WebView *)webview {
@@ -115,11 +170,13 @@
     }
 
     // What's the content type?
-    for (id item in [manifest objectEnumerator]) {
-        NSXMLElement *manifestItem = (NSXMLElement *)item;
-        NSXMLNode *idNode = [manifestItem attributeForName:@"href"];
-        if ([[idNode stringValue] isEqualToString:path]) {
-            *contentType = [[manifestItem attributeForName:@"media-type"] stringValue];
+    if (contentType) {
+        for (id item in [manifest objectEnumerator]) {
+            NSXMLElement *manifestItem = (NSXMLElement *)item;
+            NSXMLNode *idNode = [manifestItem attributeForName:@"href"];
+            if ([[idNode stringValue] isEqualToString:path]) {
+                *contentType = [[manifestItem attributeForName:@"media-type"] stringValue];
+            }
         }
     }
 

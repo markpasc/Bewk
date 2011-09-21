@@ -12,7 +12,7 @@
 #import "BookWindowController.h"
 
 
-@interface Book : NSDocument {
+@interface Book : NSDocument <NSWindowDelegate> {
     ZKDataArchive *archive;
     NSXMLDocument *content;
     NSString *title;
@@ -21,6 +21,7 @@
     NSUInteger currentItem;
 
     BookWindowController *contr;
+    NSImage *coverIcon;
 
     //IBOutlet WebView *webview;
 }
@@ -38,6 +39,7 @@
 @property (retain) NSArray *spine;
 @property (retain) NSDictionary *manifest;
 @property (retain) BookWindowController *contr;
+@property (retain) NSImage *coverIcon;
 @property (readonly) WebView *webview;
 
 @end
