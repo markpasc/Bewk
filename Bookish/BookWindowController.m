@@ -56,6 +56,7 @@
 }
 
 - (void)webView:(WebView *)sender decidePolicyForNavigationAction:(NSDictionary *)actionInformation request:(NSURLRequest *)request frame:(WebFrame *)frame decisionListener:(id<WebPolicyDecisionListener>)listener {
+    NSLog(@"Can a book open a URL %@?", [request URL]);
     if ([[[request URL] scheme] caseInsensitiveCompare:[BookProtocol bookProtocolScheme]] == NSOrderedSame) {
         [listener use];
         return;

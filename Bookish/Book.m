@@ -22,7 +22,7 @@
 
 @implementation Book
 
-@synthesize archive, content, title, spine, manifest, contr, coverIcon;
+@synthesize archive, opfPath, content, title, spine, manifest, contr, coverIcon;
 
 - (id)init
 {
@@ -165,7 +165,8 @@
 }
 
 - (NSData *)dataForResourcePath:(NSString *)path contentType:(NSString **)contentType {
-    NSString *filename = [NSString stringWithFormat:@"OEBPS/%@",path];
+    NSString *filename = [NSString stringWithFormat:@"%@/%@",opfPath,path];
+    NSLog(@"Did somebody ask for a %@?", filename);
 
     ZKCDHeader *header = [self entryForFilename:filename];
     if (!header) {
@@ -236,6 +237,7 @@
         return NO;
     }
 
+    self.opfPath = [opfFilename stringByDeletingLastPathComponent];
     self.content = [[NSXMLDocument alloc] initWithData:[archive inflateFile:header attributes:&contentAttr] options:0 error:&error];
     if (error) {
         NSLog(@"Error parsing the OPF document");

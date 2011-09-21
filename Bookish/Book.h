@@ -14,6 +14,7 @@
 
 @interface Book : NSDocument <NSWindowDelegate> {
     ZKDataArchive *archive;
+    NSString *opfPath;
     NSXMLDocument *content;
     NSString *title;
     NSArray *spine;
@@ -34,6 +35,7 @@
 - (void)previousChapter:(NSMenuItem *)something;
 
 @property (retain) ZKDataArchive *archive;
+@property (retain) NSString *opfPath;
 @property (retain) NSXMLDocument *content;
 @property (retain) NSString *title;
 @property (retain) NSArray *spine;
