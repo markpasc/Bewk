@@ -55,7 +55,22 @@
     //[self setNeedsDisplay:YES];
 }
 
--(NSURLRequest *)webView:(WebView *)sender resource:(id)identifier willSendRequest:(NSURLRequest *)request redirectResponse:(NSURLResponse *)redirectResponse fromDataSource:(WebDataSource *)dataSource {
+- (void)webView:(WebView *)sender decidePolicyForNavigationAction:(NSDictionary *)actionInformation request:(NSURLRequest *)request frame:(WebFrame *)frame decisionListener:(id<WebPolicyDecisionListener>)listener {
+    if ([[[request URL] scheme] caseInsensitiveCompare:[BookProtocol bookProtocolScheme]] == NSOrderedSame) {
+        [listener use];
+        return;
+    }
+
+    // Is it a click? We can open a click.
+    WebNavigationType navType = [[actionInformation objectForKey:WebActionNavigationTypeKey] intValue];
+    if (navType != WebNavigationTypeFormSubmitted && navType != WebNavigationTypeFormResubmitted) {
+        [[NSWorkspace sharedWorkspace] openURL:[request URL]];
+    }
+
+    [listener ignore];
+}
+
+- (NSURLRequest *)webView:(WebView *)sender resource:(id)identifier willSendRequest:(NSURLRequest *)request redirectResponse:(NSURLResponse *)redirectResponse fromDataSource:(WebDataSource *)dataSource {
     NSLog(@"O HAI webview will send request");
     if (![BookProtocol canInitWithRequest:request]) {
         NSLog(@"Oops, request %@ is not a book protocol request", request);
