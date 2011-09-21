@@ -15,6 +15,7 @@
 
 - (void)updateWebView;
 - (ZKCDHeader *)entryForFilename:(NSString *)filename;
+- (void)setAppIconToCover;
 
 @end
 
@@ -65,6 +66,8 @@
     // What's the first page in the book?
     currentItem = 0;
     [self updateWebView];
+
+    [self setAppIconToCover];
 }
 
 - (void)setAppIconToCover {
