@@ -16,6 +16,7 @@
     ZKDataArchive *archive;
     NSString *opfPath;
     NSXMLDocument *content;
+    NSString *bookId;
     NSString *title;
     NSArray *spine;
     NSDictionary *manifest;
@@ -37,6 +38,7 @@
 @property (retain) ZKDataArchive *archive;
 @property (retain) NSString *opfPath;
 @property (retain) NSXMLDocument *content;
+@property (retain) NSString *bookId;
 @property (retain) NSString *title;
 @property (retain) NSArray *spine;
 @property (retain) NSDictionary *manifest;

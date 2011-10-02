@@ -54,7 +54,7 @@
     NSLog(@"Gonna load content from book %@", book);
 
     NSString *contentType = nil;
-    NSString *path = [[[request URL] path] substringFromIndex:1];
+    NSString *path = [[[request URL] path] substringFromIndex:2 + [[book bookId] length]];
     NSLog(@"Looks like we want book stuff from \"%@\"", path);
     NSData *data = [book dataForResourcePath:path contentType:&contentType];
     NSLog(@"That file had %ld bytes of %@ data! Building response...", [data length], contentType);

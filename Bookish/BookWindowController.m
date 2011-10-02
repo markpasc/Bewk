@@ -57,7 +57,7 @@
 
 - (void)webView:(WebView *)sender decidePolicyForNavigationAction:(NSDictionary *)actionInformation request:(NSURLRequest *)request frame:(WebFrame *)frame decisionListener:(id<WebPolicyDecisionListener>)listener {
     NSLog(@"Can a book open a URL %@?", [request URL]);
-    if ([[[request URL] scheme] caseInsensitiveCompare:[BookProtocol bookProtocolScheme]] == NSOrderedSame) {
+    if ([BookProtocol canInitWithRequest:request]) {
         [listener use];
         return;
     }
@@ -80,7 +80,7 @@
     
     NSMutableURLRequest *bookRequest = [[request mutableCopy] autorelease];
     [bookRequest setBookProtocolBook:self.document];
-    NSLog(@"Yay, set a new book request %@ with bookself saved in it wewt", bookRequest);
+    NSLog(@"Yay, set a new book request %@ with bookself %@, %@, saved in it wewt", bookRequest, self.document, ((Book*)self.document).title);
     return bookRequest;
 }
 

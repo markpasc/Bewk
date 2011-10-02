@@ -22,7 +22,7 @@
 
 @implementation Book
 
-@synthesize archive, opfPath, content, title, spine, manifest, contr, coverIcon;
+@synthesize archive, opfPath, content, bookId, title, spine, manifest, contr, coverIcon;
 
 - (id)init
 {
@@ -39,12 +39,14 @@
     if (!nibname)
         return;
 
+    NSLog(@"MAKING WINDOW CONTROLLER(S?)");
     BookWindowController *derp = [[BookWindowController alloc] initWithWindowNibName:nibname];
     self.contr = derp;
     [derp release];
 
     contr.document = self;
     [self addWindowController:contr];
+    NSLog(@"NEW CONTROLLER %@ WITH ME, A BOOK, %@, %@, FOR DOCUMENT", contr, self, title);
 
     NSWindow *window = [contr window];
     [window setDelegate:self];
@@ -134,7 +136,7 @@
     NSXMLNode *node = [first attributeForName:@"href"];
     if (!node) return;
 
-    NSString *bookUrl = [NSString stringWithFormat:@"%@://book/%@",[BookProtocol bookProtocolScheme],[node stringValue]];
+    NSString *bookUrl = [NSString stringWithFormat:@"%@://book/%@/%@",[BookProtocol bookProtocolScheme],bookId,[node stringValue]];
     NSLog(@"Loading up URL %@ in webview!", bookUrl);
     [self.webview setMainFrameURL:bookUrl];
 }
@@ -245,7 +247,35 @@
         return NO;
     }
 
-    NSString *query = @"./metadata/*[local-name()=\"title\"]/text()";
+    NSLog(@"Looking for where to find the book's unique identifier");
+    result = [[content rootElement] objectsForXQuery:@"./@unique-identifier" error:&error];
+    if (!result) {
+        NSLog(@"Couldn't query unique-identifier field");
+        if (outError) *outError = error;
+        return NO;
+    }
+    if (![result count]) {
+        NSLog(@"Couldn't find any unique-identifier attribute");
+        return NO;
+    }
+    NSString *bookIdField = [[result objectAtIndex:0] stringValue];
+
+    NSLog(@"Looking for element with id=%@ for book's unique identifier", bookIdField);
+    NSString *query = [NSString stringWithFormat:@"./metadata/*[@id=\"%@\"]/text()",bookIdField];
+    result = [[content rootElement] objectsForXQuery:query error:&error];
+    if (!result) {
+        NSLog(@"Couldn't query the unique identifier with id %@", bookIdField);
+        if (outError) *outError = error;
+        return NO;
+    }
+    if (![result count]) {
+        NSLog(@"Couldn't find any metadata element with id attribute of %@", bookIdField);
+        return NO;
+    }
+    self.bookId = [[result objectAtIndex:0] stringValue];
+
+    NSLog(@"Looking for title of book %@", bookId);
+    query = @"./metadata/*[local-name()=\"title\"]/text()";
     result = [[content rootElement] objectsForXQuery:query error:&error];
     if (!result) {
         NSLog(@"Couldn't query dc:title in OPF");
