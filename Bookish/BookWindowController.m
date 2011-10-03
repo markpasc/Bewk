@@ -84,4 +84,19 @@
     return bookRequest;
 }
 
+- (void)webView:(WebView *)sender didFinishLoadForFrame:(WebFrame *)frame {
+    NSLog(@"ENABULATE SCRIPTITATING");
+    WebScriptObject *script = [sender windowScriptObject];
+    [script setValue:self.document forKey:@"bewkbook"];
+    [script evaluateWebScript:@"document.addEventListener('keypress', function (e) {"
+     @"if (e.metaKey || e.ctrlKey || e.shiftKey) { window.bewkbook.log(\"some meta key is down\"); return true; }"
+     @"window.bewkbook.log(e.keyCode);"
+     @"if (e.keyCode != 32) { window.bewkbook.log(\"some key besides space was hit\"); return true; }"
+     @"var scrollMaxY = document.documentElement.scrollHeight - document.documentElement.clientHeight;"
+     @"window.bewkbook.log(\"Window scrollY: \" + window.scrollY + \" max scrollY: \" + scrollMaxY);"
+     @"if (window.scrollY < scrollMaxY) { window.bewkbook.log(\"not at the end of the page\"); return true; }"
+     @"window.bewkbook.nextChapter(); return false;"
+     @"});"];
+}
+
 @end

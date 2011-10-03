@@ -373,6 +373,26 @@
     [self updateWebView];
 }
 
++ (NSString*)webScriptNameForSelector:(SEL)selector {
+    if (selector == @selector(nextChapter:))
+        return @"nextChapter";
+    if (selector == @selector(logJSMessage:))
+        return @"log";
+    return nil;
+}
+
++ (BOOL)isSelectorExcludedFromWebScript:(SEL)selector {
+    if (selector == @selector(nextChapter:))
+        return NO;
+    if (selector == @selector(logJSMessage:))
+        return NO;
+    return YES;
+}
+
+- (void)logJSMessage:(NSString *)message {
+    NSLog(@"js: %@", message);
+}
+
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem {
     SEL act = [menuItem action];
     if (act == @selector(nextPage:)) {
