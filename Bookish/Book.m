@@ -359,6 +359,28 @@
     [menuitem setState:NSOnState];
 }
 
+- (IBAction)setTypeSize:(NSMenuItem *)menuitem {
+    WebPreferences *prefs = [[WebPreferences alloc] initWithIdentifier:[BookProtocol bookProtocolKey]];
+    if (menuitem.tag == 3) {  // Bed
+        [prefs setDefaultFontSize:16];
+        [prefs setDefaultFixedFontSize:16];
+    }
+    else if (menuitem.tag == 4) {  // Knee
+        [prefs setDefaultFontSize:20];
+        [prefs setDefaultFixedFontSize:20];
+    }
+    else if (menuitem.tag == 5) {  // Breakfast
+        [prefs setDefaultFontSize:24];
+        [prefs setDefaultFixedFontSize:24];
+    }
+
+    NSMenu *formatMenu = [[[NSApp mainMenu] itemWithTag:2] submenu];
+    for (int tag = 3; tag <= 5; tag++) {
+        [[formatMenu itemWithTag:tag] setState:NSOffState];
+    }
+    [menuitem setState:NSOnState];
+}
+
 - (void)nextPage:(NSMenuItem *)menuItem {
     NSLog(@"~~ NEXT PAGE ~~");
 }

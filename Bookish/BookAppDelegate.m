@@ -23,6 +23,8 @@ NSString * const MPTypeSizeBreakfast = @"Breakfast";
 @interface BookAppDelegate ()
 
 - (void)configureWebPreferences;
+- (void)configureTypefacePreference:(WebPreferences *)prefs fromDefaults:(NSUserDefaults *)defaults;
+- (void)configureTypeSizePreference:(WebPreferences *)prefs fromDefaults:(NSUserDefaults *)defaults;
 
 @end
 
@@ -61,6 +63,7 @@ NSString * const MPTypeSizeBreakfast = @"Breakfast";
 
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [self configureTypefacePreference:prefs fromDefaults:defaults];
+    [self configureTypeSizePreference:prefs fromDefaults:defaults];
 
     NSString *path = [[NSBundle mainBundle] pathForResource:@"book.css" ofType:nil inDirectory:@"web"];
     NSLog(@"CONFIGULATED user style path: %@", path);
@@ -81,6 +84,39 @@ NSString * const MPTypeSizeBreakfast = @"Breakfast";
     NSMenu *formatMenu = [[[NSApp mainMenu] itemWithTag:2] submenu];
     [[formatMenu itemWithTag:1] setState:[typeface isEqualToString:MPTypefaceGeorgia] ? NSOnState : NSOffState];
     [[formatMenu itemWithTag:2] setState:[typeface isEqualToString:MPTypefaceHelvetica] ? NSOnState : NSOffState];
+}
+
+- (void)configureTypeSizePreference:(WebPreferences *)prefs fromDefaults:(NSUserDefaults *)defaults {
+    NSString *typeSize = [defaults objectForKey:MPTypeSizeKey];
+    NSLog(@"CONFIGURATING with type size %@", typeSize);
+    if (!typeSize)
+        typeSize = MPTypeSizeBed;
+
+    NSMenu *formatMenu = [[[NSApp mainMenu] itemWithTag:2] submenu];
+    for (int tag = 3; tag <= 5; tag++) {
+        [[formatMenu itemWithTag:3] setState:NSOffState];
+    }
+
+    if ([typeSize isEqualToString:MPTypeSizeBreakfast]) {
+        [prefs setDefaultFontSize:24];
+        [prefs setDefaultFixedFontSize:24];
+        [[formatMenu itemWithTag:5] setState:NSOnState];
+    }
+    else if ([typeSize isEqualToString:MPTypeSizeKnee]) {
+        [prefs setDefaultFontSize:20];
+        [prefs setDefaultFixedFontSize:20];
+        [[formatMenu itemWithTag:4] setState:NSOnState];
+    }
+    else if ([typeSize intValue] > 0) {
+        int realTypeSize = [typeSize intValue];
+        [prefs setDefaultFontSize:realTypeSize];
+        [prefs setDefaultFixedFontSize:realTypeSize];
+    }
+    else {
+        [prefs setDefaultFontSize:16];
+        [prefs setDefaultFixedFontSize:16];
+        [[formatMenu itemWithTag:3] setState:NSOnState];
+    }
 }
 
 - (BOOL)applicationShouldOpenUntitledFile:(NSApplication *)sender {
