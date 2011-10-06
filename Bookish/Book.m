@@ -9,6 +9,7 @@
 #import "Book.h"
 #import <ZipKit/ZKCDHeader.h>
 #import "BookProtocol.h"
+#import "BookAppDelegate.h"
 
 
 @interface Book ()
@@ -343,6 +344,21 @@
     return YES;
 }
 
+- (IBAction)setTypeface:(NSMenuItem *)menuitem {
+    WebPreferences *prefs = [[WebPreferences alloc] initWithIdentifier:[BookProtocol bookProtocolKey]];
+    if (menuitem.tag == 1) {
+        [prefs setStandardFontFamily:MPTypefaceGeorgia];
+    }
+    else if (menuitem.tag == 2) {
+        [prefs setStandardFontFamily:MPTypefaceHelvetica];
+    }
+
+    NSMenu *formatMenu = [[[NSApp mainMenu] itemWithTag:2] submenu];
+    [[formatMenu itemWithTag:1] setState:NSOffState];
+    [[formatMenu itemWithTag:2] setState:NSOffState];
+    [menuitem setState:NSOnState];
+}
+
 - (void)nextPage:(NSMenuItem *)menuItem {
     NSLog(@"~~ NEXT PAGE ~~");
 }
@@ -399,10 +415,10 @@
 
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem {
     SEL act = [menuItem action];
-    if (act == @selector(nextPage:)) {
+    if (act == @selector(setTypeface:)) {
         return YES;
     }
-    if (act == @selector(previousPage:)) {
+    if (act == @selector(setTypeSize:)) {
         return YES;
     }
     if (act == @selector(nextChapter:) && currentItem < [spine count]) {

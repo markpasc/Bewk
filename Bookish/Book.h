@@ -30,10 +30,9 @@
 
 - (NSData *)dataForResourcePath:(NSString *)path contentType:(NSString **)contentType;
 
-- (void)nextPage:(NSMenuItem *)something;
-- (void)previousPage:(NSMenuItem *)something;
-- (void)nextChapter:(NSMenuItem *)something;
-- (void)previousChapter:(NSMenuItem *)something;
+- (IBAction)nextChapter:(NSMenuItem *)menuitem;
+- (IBAction)previousChapter:(NSMenuItem *)menuitem;
+- (IBAction)setTypeface:(NSMenuItem *)menuitem;
 
 @property (retain) ZKDataArchive *archive;
 @property (retain) NSString *opfPath;
