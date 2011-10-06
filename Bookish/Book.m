@@ -167,7 +167,7 @@
 }
 
 - (NSData *)dataForResourcePath:(NSString *)path contentType:(NSString **)contentType {
-    NSString *filename = [NSString stringWithFormat:@"%@/%@",opfPath,path];
+    NSString *filename = [opfPath length] ? [NSString stringWithFormat:@"%@/%@",opfPath,path] : path;
     NSLog(@"Did somebody ask for a %@?", filename);
 
     ZKCDHeader *header = [self entryForFilename:filename];
@@ -261,7 +261,7 @@
     NSString *bookIdField = [[result objectAtIndex:0] stringValue];
 
     NSLog(@"Looking for element with id=%@ for book's unique identifier", bookIdField);
-    NSString *query = [NSString stringWithFormat:@"./metadata/*[@id=\"%@\"]/text()",bookIdField];
+    NSString *query = [NSString stringWithFormat:@"./metadata//*[@id=\"%@\"]/text()",bookIdField];
     result = [[content rootElement] objectsForXQuery:query error:&error];
     if (!result) {
         NSLog(@"Couldn't query the unique identifier with id %@", bookIdField);
@@ -275,7 +275,7 @@
     self.bookId = [[result objectAtIndex:0] stringValue];
 
     NSLog(@"Looking for title of book %@", bookId);
-    query = @"./metadata/*[local-name()=\"title\"]/text()";
+    query = @"./metadata//*[local-name()=\"title\"]/text()";
     result = [[content rootElement] objectsForXQuery:query error:&error];
     if (!result) {
         NSLog(@"Couldn't query dc:title in OPF");
