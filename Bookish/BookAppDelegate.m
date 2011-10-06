@@ -42,7 +42,7 @@
     [prefs setJavaScriptCanOpenWindowsAutomatically:NO];
     [prefs setUserStyleSheetEnabled:YES];
 
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"book.css" ofType:nil inDirectory:@"css"];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"book.css" ofType:nil inDirectory:@"web"];
     NSLog(@"CONFIGULATED user style path: %@", path);
     [prefs setUserStyleSheetLocation:[NSURL fileURLWithPath:path]];
 

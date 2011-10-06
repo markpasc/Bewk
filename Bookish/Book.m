@@ -374,6 +374,8 @@
 }
 
 + (NSString*)webScriptNameForSelector:(SEL)selector {
+    if (selector == @selector(previousChapter:))
+        return @"previousChapter";
     if (selector == @selector(nextChapter:))
         return @"nextChapter";
     if (selector == @selector(logJSMessage:))
@@ -382,6 +384,8 @@
 }
 
 + (BOOL)isSelectorExcludedFromWebScript:(SEL)selector {
+    if (selector == @selector(previousChapter:))
+        return NO;
     if (selector == @selector(nextChapter:))
         return NO;
     if (selector == @selector(logJSMessage:))
