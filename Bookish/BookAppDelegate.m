@@ -60,6 +60,8 @@ NSString * const MPTypeSizeBreakfast = @"Breakfast";
     [prefs setJavaScriptEnabled:YES];
     [prefs setJavaScriptCanOpenWindowsAutomatically:NO];
     [prefs setUserStyleSheetEnabled:YES];
+    [prefs setSansSerifFontFamily:@"Helvetica"];
+    [prefs setSerifFontFamily:@"Georgia"];
 
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [self configureTypefacePreference:prefs fromDefaults:defaults];
