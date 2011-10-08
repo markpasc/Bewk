@@ -381,15 +381,7 @@
     [menuitem setState:NSOnState];
 }
 
-- (void)nextPage:(NSMenuItem *)menuItem {
-    NSLog(@"~~ NEXT PAGE ~~");
-}
-
-- (void)previousPage:(NSMenuItem *)menuItem {
-    NSLog(@"~~ PREVIOUS PAGE ~~");
-}
-
-- (void)nextChapter:(NSMenuItem *)menuItem {
+- (IBAction)nextChapter:(NSMenuItem *)menuItem {
     NSLog(@"~~ NEXT CHAPTER ~~");
 
     if (currentItem >= [spine count] - 1) {
@@ -400,7 +392,7 @@
     [self updateWebView];
 }
 
-- (void)previousChapter:(NSMenuItem *)menuItem {
+- (IBAction)previousChapter:(NSMenuItem *)menuItem {
     NSLog(@"~~ PREVIOUS CHAPTER ~~");
 
     if (currentItem <= 0) {

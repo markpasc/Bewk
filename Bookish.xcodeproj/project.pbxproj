@@ -15,6 +15,7 @@
 		2968C6F013C68A00009342DC /* Book.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2968C6EE13C68A00009342DC /* Book.xib */; };
 		2968C6F313C68A00009342DC /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2968C6F113C68A00009342DC /* MainMenu.xib */; };
 		29775371143D8E7E005552C7 /* web in Resources */ = {isa = PBXBuildFile; fileRef = 29775370143D8E7E005552C7 /* web */; };
+		29775378143E509F005552C7 /* BookWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 29775377143E509F005552C7 /* BookWindow.m */; };
 		29BB432813DDE484001CF52A /* BookWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29BB432713DDE484001CF52A /* BookWindowController.m */; };
 		29F79E4F13CFA7E70061E1FA /* BookProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 29F79E4E13CFA7E70061E1FA /* BookProtocol.m */; };
 		29F79E5213D01EC20061E1FA /* BookAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 29F79E5113D01EC20061E1FA /* BookAppDelegate.m */; };
@@ -62,6 +63,8 @@
 		2968C6EF13C68A00009342DC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Book.xib; sourceTree = "<group>"; };
 		2968C6F213C68A00009342DC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		29775370143D8E7E005552C7 /* web */ = {isa = PBXFileReference; lastKnownFileType = folder; path = web; sourceTree = "<group>"; };
+		29775376143E509F005552C7 /* BookWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookWindow.h; sourceTree = "<group>"; };
+		29775377143E509F005552C7 /* BookWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookWindow.m; sourceTree = "<group>"; };
 		29BB432613DDE484001CF52A /* BookWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookWindowController.h; sourceTree = "<group>"; };
 		29BB432713DDE484001CF52A /* BookWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookWindowController.m; sourceTree = "<group>"; };
 		29F79E4D13CFA7E70061E1FA /* BookProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookProtocol.h; sourceTree = "<group>"; };
@@ -129,6 +132,8 @@
 			children = (
 				2968C6EB13C68A00009342DC /* Book.h */,
 				2968C6EC13C68A00009342DC /* Book.m */,
+				29775376143E509F005552C7 /* BookWindow.h */,
+				29775377143E509F005552C7 /* BookWindow.m */,
 				29BB432613DDE484001CF52A /* BookWindowController.h */,
 				29BB432713DDE484001CF52A /* BookWindowController.m */,
 				29F79E4D13CFA7E70061E1FA /* BookProtocol.h */,
@@ -265,6 +270,7 @@
 				29F79E4F13CFA7E70061E1FA /* BookProtocol.m in Sources */,
 				29F79E5213D01EC20061E1FA /* BookAppDelegate.m in Sources */,
 				29BB432813DDE484001CF52A /* BookWindowController.m in Sources */,
+				29775378143E509F005552C7 /* BookWindow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,14 +1,14 @@
-function handleWebKeypress(e) {
-    if (e.metaKey || e.ctrlKey || e.shiftKey) {
-        window.bewk.log("some meta key is down");
-        return true;
-    }
-    window.bewk.log(e.keyCode);
-    if (e.keyCode != 32) {
-        window.bewk.log("some key besides space was hit");
+function previousChapterIfAtStart() {
+    if (window.scrollY > 0) {
+        window.bewk.log("not at start of the page");
         return true;
     }
 
+    window.bewk.previousChapter();
+    return false;
+}
+
+function nextChapterIfAtEnd() {
     var scrollMaxY = document.documentElement.scrollHeight - document.documentElement.clientHeight;
     window.bewk.log("Window scrollY: " + window.scrollY + " max scrollY: " + scrollMaxY);
     if (window.scrollY < scrollMaxY) {
@@ -19,5 +19,3 @@ function handleWebKeypress(e) {
     window.bewk.nextChapter();
     return false;
 }
-
-document.addEventListener('keypress', handleWebKeypress);
