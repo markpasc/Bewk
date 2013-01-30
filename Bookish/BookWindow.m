@@ -77,8 +77,11 @@
     else if ([event type] == NSEventTypeSwipe) {
         [self swipeWithEvent:event];
     }
+    else if ([event type] == NSMouseMoved || [event type] == NSMouseExited || [event type] == NSMouseEntered) {
+        [super sendEvent:event];
+    }
     else {
-        NSLog(@"bubbling event %@ to superwindow", event);
+        //NSLog(@"bubbling event %@ to superwindow", event);
         [super sendEvent:event];
     }
 }
