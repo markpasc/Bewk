@@ -56,7 +56,7 @@
         NSLog(@"~~ KEY DOWN %@ ~~", event);
 
         NSString *method = nil;
-        if ([event keyCode] == 49 || [event keyCode] == 125) {
+        if ([event keyCode] == 125) {
             method = @"nextChapterIfAtEnd";
         }
         else if ([event keyCode] == 126) {
