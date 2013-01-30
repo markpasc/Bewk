@@ -196,7 +196,7 @@
 		2968C6CC13C68A00009342DC /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0450;
 			};
 			buildConfigurationList = 2968C6CF13C68A00009342DC /* Build configuration list for PBXProject "Bookish" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -360,6 +360,7 @@
 		2968C6F713C68A00009342DC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Bookish/Bookish-Prefix.pch";
 				INFOPLIST_FILE = "Bookish/Bookish-Info.plist";
@@ -371,6 +372,7 @@
 		2968C6F813C68A00009342DC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Bookish/Bookish-Prefix.pch";
 				INFOPLIST_FILE = "Bookish/Bookish-Info.plist";
