@@ -55,14 +55,21 @@
 
     NSString *contentType = nil;
     NSString *path = [[[request URL] path] substringFromIndex:2 + [[book bookId] length]];
-    NSLog(@"Looks like we want book stuff from \"%@\"", path);
+    NSLog(@"With URL path \"%@\" and book ID \"%@\", looks like we want book stuff from \"%@\"", [[request URL] path], [book bookId], path);
     NSData *data = [book dataForResourcePath:path contentType:&contentType];
-    NSLog(@"That file had %ld bytes of %@ data! Building response...", [data length], contentType);
-
-    // TODO: do i need to do something special to handle 404s?
-    NSURLResponse *response = [[NSURLResponse alloc] initWithURL:[request URL] MIMEType:contentType expectedContentLength:[data length] textEncodingName:nil];
 
     id<NSURLProtocolClient> client = [self client];
+    if (!data) {
+        NSDictionary *userinfo = [NSDictionary dictionaryWithObject:[request URL] forKey:NSURLErrorKey];
+        NSError *error = [NSError errorWithDomain:NSCocoaErrorDomain code:404 userInfo:userinfo];
+        [client URLProtocol:self didFailWithError:error];
+        NSLog(@"Telling client that's it, done loading");
+        [client URLProtocolDidFinishLoading:self];
+        return;
+    }
+
+    NSLog(@"That file had %ld bytes of %@ data! Building response...", [data length], contentType);
+    NSURLResponse *response = [[NSURLResponse alloc] initWithURL:[request URL] MIMEType:contentType expectedContentLength:[data length] textEncodingName:nil];
     NSLog(@"Telling client they received a response");
 	[client URLProtocol:self didReceiveResponse:response cacheStoragePolicy:NSURLCacheStorageNotAllowed];
     NSLog(@"Telling client the data they got");
@@ -93,6 +100,7 @@
 - (void)setBookProtocolBook:(Book *)book {
 	[NSURLProtocol setProperty:book
                         forKey:[BookProtocol bookProtocolKey] inRequest:self];
+    NSLog(@"~YAY set book protocol book for request %@ to %@!~", self, book);
 }
 
 @end
