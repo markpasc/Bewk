@@ -48,7 +48,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2968C6D513C68A00009342DC /* Bookish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = Bookish.app; path = Bewk.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2968C6D513C68A00009342DC /* Bewk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bewk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2968C6D913C68A00009342DC /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		2968C6DC13C68A00009342DC /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		2968C6DD13C68A00009342DC /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -102,7 +102,7 @@
 		2968C6D613C68A00009342DC /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2968C6D513C68A00009342DC /* Bookish.app */,
+				2968C6D513C68A00009342DC /* Bewk.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -187,7 +187,7 @@
 			);
 			name = Bewk;
 			productName = Bookish;
-			productReference = 2968C6D513C68A00009342DC /* Bookish.app */;
+			productReference = 2968C6D513C68A00009342DC /* Bewk.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -365,6 +365,7 @@
 				GCC_PREFIX_HEADER = "Bookish/Bookish-Prefix.pch";
 				INFOPLIST_FILE = "Bookish/Bookish-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.7;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -377,6 +378,7 @@
 				GCC_PREFIX_HEADER = "Bookish/Bookish-Prefix.pch";
 				INFOPLIST_FILE = "Bookish/Bookish-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.7;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
