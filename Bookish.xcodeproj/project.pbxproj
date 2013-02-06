@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		03F3F2C9485F48C99738798A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E1B2BE8F16B4D3687B1621E /* libPods.a */; };
 		2968C6DA13C68A00009342DC /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2968C6D913C68A00009342DC /* Cocoa.framework */; };
 		2968C6E413C68A00009342DC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2968C6E213C68A00009342DC /* InfoPlist.strings */; };
 		2968C6E613C68A00009342DC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2968C6E513C68A00009342DC /* main.m */; };
@@ -20,32 +21,7 @@
 		29F79E4F13CFA7E70061E1FA /* BookProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 29F79E4E13CFA7E70061E1FA /* BookProtocol.m */; };
 		29F79E5213D01EC20061E1FA /* BookAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 29F79E5113D01EC20061E1FA /* BookAppDelegate.m */; };
 		29FB981F13C6BC6D009044B0 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29FB981E13C6BC6D009044B0 /* WebKit.framework */; };
-		29FB985713CD0833009044B0 /* ZipKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29FB984D13CD069E009044B0 /* ZipKit.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		29FB984C13CD069E009044B0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29FB983113CD069D009044B0 /* ZipKit.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 8DC2EF5B0486A6940098B216;
-			remoteInfo = ZipKit;
-		};
-		29FB984E13CD069E009044B0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29FB983113CD069D009044B0 /* ZipKit.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = CB9B9CB6109F665C003E3F8B;
-			remoteInfo = zipkit;
-		};
-		29FB985013CD069E009044B0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29FB983113CD069D009044B0 /* ZipKit.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = CB9B9CEE109F6769003E3F8B;
-			remoteInfo = touchzipkit;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		2968C6D513C68A00009342DC /* Bewk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bewk.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -72,7 +48,8 @@
 		29F79E5013D01EC20061E1FA /* BookAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookAppDelegate.h; sourceTree = "<group>"; };
 		29F79E5113D01EC20061E1FA /* BookAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookAppDelegate.m; sourceTree = "<group>"; };
 		29FB981E13C6BC6D009044B0 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
-		29FB983113CD069D009044B0 /* ZipKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ZipKit.xcodeproj; path = zipkit/ZipKit.xcodeproj; sourceTree = "<group>"; };
+		9E1B2BE8F16B4D3687B1621E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE6B77EF77CE4BDCA69AB509 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,7 +59,7 @@
 			files = (
 				29FB981F13C6BC6D009044B0 /* WebKit.framework in Frameworks */,
 				2968C6DA13C68A00009342DC /* Cocoa.framework in Frameworks */,
-				29FB985713CD0833009044B0 /* ZipKit.framework in Frameworks */,
+				03F3F2C9485F48C99738798A /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,10 +69,10 @@
 		2968C6CA13C68A00009342DC = {
 			isa = PBXGroup;
 			children = (
-				29FB983113CD069D009044B0 /* ZipKit.xcodeproj */,
 				2968C6DF13C68A00009342DC /* Bookish */,
 				2968C6D813C68A00009342DC /* Frameworks */,
 				2968C6D613C68A00009342DC /* Products */,
+				CE6B77EF77CE4BDCA69AB509 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -113,6 +90,7 @@
 				2968C6D913C68A00009342DC /* Cocoa.framework */,
 				29FB981E13C6BC6D009044B0 /* WebKit.framework */,
 				2968C6DB13C68A00009342DC /* Other Frameworks */,
+				9E1B2BE8F16B4D3687B1621E /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -160,16 +138,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		29FB983213CD069D009044B0 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				29FB984D13CD069E009044B0 /* ZipKit.framework */,
-				29FB984F13CD069E009044B0 /* libzipkit.a */,
-				29FB985113CD069E009044B0 /* libtouchzipkit.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -180,6 +148,7 @@
 				2968C6D113C68A00009342DC /* Sources */,
 				2968C6D213C68A00009342DC /* Frameworks */,
 				2968C6D313C68A00009342DC /* Resources */,
+				2F01A34257FC486FBFB9E9A9 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -208,42 +177,12 @@
 			mainGroup = 2968C6CA13C68A00009342DC;
 			productRefGroup = 2968C6D613C68A00009342DC /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 29FB983213CD069D009044B0 /* Products */;
-					ProjectRef = 29FB983113CD069D009044B0 /* ZipKit.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				2968C6D413C68A00009342DC /* Bewk */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		29FB984D13CD069E009044B0 /* ZipKit.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = ZipKit.framework;
-			remoteRef = 29FB984C13CD069E009044B0 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		29FB984F13CD069E009044B0 /* libzipkit.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libzipkit.a;
-			remoteRef = 29FB984E13CD069E009044B0 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		29FB985113CD069E009044B0 /* libtouchzipkit.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libtouchzipkit.a;
-			remoteRef = 29FB985013CD069E009044B0 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		2968C6D313C68A00009342DC /* Resources */ = {
@@ -259,6 +198,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2F01A34257FC486FBFB9E9A9 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2968C6D113C68A00009342DC /* Sources */ = {
@@ -359,6 +315,7 @@
 		};
 		2968C6F713C68A00009342DC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CE6B77EF77CE4BDCA69AB509 /* Pods.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -372,6 +329,7 @@
 		};
 		2968C6F813C68A00009342DC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CE6B77EF77CE4BDCA69AB509 /* Pods.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
