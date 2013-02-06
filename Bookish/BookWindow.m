@@ -13,13 +13,17 @@
 
 @implementation BookWindow
 
-- (id)initWithContentRect:(NSRect)contentRect styleMask:(NSUInteger)aStyle backing:(NSBackingStoreType)bufferingType defer:(BOOL)flag {
+- (id)initWithContentRect:(NSRect)contentRect styleMask:(NSUInteger)aStyle backing:(NSBackingStoreType)bufferingType defer:(BOOL)deferCreation {
     // This makes us a floaty utility window, but it isn't quite what we want.
-    //aStyle = NSBorderlessWindowMask;
-    self = [super initWithContentRect:contentRect styleMask:aStyle backing:bufferingType defer:flag];
+    aStyle = NSBorderlessWindowMask;
+    self = [super initWithContentRect:contentRect styleMask:aStyle backing:bufferingType defer:deferCreation];
 
     if (self) {
         // Initialize more?
+        if (aStyle == NSBorderlessWindowMask) {
+            [self setOpaque:NO];
+            [self setBackgroundColor:[NSColor clearColor]];
+        }
     }
     return self;
 }
@@ -32,6 +36,21 @@
 - (BOOL)canBecomeMainWindow {
     // If we were a borderless window, this wouldn't be so (I guess?), so set it anyway.
     return YES;
+}
+
+- (BOOL)windowShouldClose:(id)sender {
+    return YES;
+}
+
+#define WINDOW_FRAME_PADDING 75
+
+- (NSRect)contentRectForFrameRect:(NSRect)windowFrame {
+    windowFrame.origin = NSZeroPoint;
+    return NSInsetRect(windowFrame, WINDOW_FRAME_PADDING, WINDOW_FRAME_PADDING);
+}
+
+- (NSRect)frameRectForContentRect:(NSRect)windowContentRect styleMask:(NSUInteger)windowStyle {
+    return NSInsetRect(windowContentRect, -WINDOW_FRAME_PADDING, -WINDOW_FRAME_PADDING);
 }
 
 - (void)scrollPageUp:(id)sender {
