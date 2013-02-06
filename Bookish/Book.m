@@ -23,7 +23,7 @@
 
 @implementation Book
 
-@synthesize archive, opfPath, content, bookId, title, spine, manifest, contr, coverIcon;
+@synthesize archive, opfPath, content, bookId, coverImageId, title, spine, manifest, contr, coverIcon;
 
 - (id)init
 {
@@ -79,7 +79,11 @@
         return;
     }
 
-    NSXMLElement *derp = [self.manifest objectForKey:@"cover-image"];
+    if (!self.coverImageId) {
+        return;
+    }
+
+    NSXMLElement *derp = [self.manifest objectForKey:self.coverImageId];
     if (!derp) {
         NSLog(@"No cover-image xml element oops");
         return;
@@ -290,6 +294,21 @@
 
     self.title = [[result objectAtIndex:0] stringValue];
     NSLog(@"Found book title \"%@\"", self.title);
+
+    NSLog(@"Looking for id for cover of book %@", bookId);
+    query = @"./metadata//meta[@name=\"cover\"]/@content";
+    result = [[content rootElement] objectsForXQuery:query error:&error];
+    if (!result) {
+        NSLog(@"Couldn't query meta name=cover in OPF");
+        if (outError) *outError = error;
+        return NO;
+    }
+    if ([result count] < 1) {
+        NSLog(@"Queried for meta name=cover and didn't find one (but that's okay)");
+    }
+    else {
+        self.coverImageId = [[result objectAtIndex:0] stringValue];
+    }
 
     result = [[content rootElement] nodesForXPath:@"./manifest/item" error:&error];
     if (!result) {

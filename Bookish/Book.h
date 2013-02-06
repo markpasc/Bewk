@@ -29,6 +29,7 @@
 @property (retain) NSString *opfPath;
 @property (retain) NSXMLDocument *content;
 @property (retain) NSString *bookId;
+@property (retain) NSString *coverImageId;
 @property (retain) NSString *title;
 @property (retain) NSArray *spine;
 @property (retain) NSDictionary *manifest;
