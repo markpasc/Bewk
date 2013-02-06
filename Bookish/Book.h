@@ -13,17 +13,8 @@
 
 
 @interface Book : NSDocument <NSWindowDelegate> {
-    ZKDataArchive *archive;
-    NSString *opfPath;
-    NSXMLDocument *content;
-    NSString *bookId;
-    NSString *title;
-    NSArray *spine;
-    NSDictionary *manifest;
     NSUInteger currentItem;
-
     BookWindowController *contr;
-    NSImage *coverIcon;
 
     //IBOutlet WebView *webview;
 }
