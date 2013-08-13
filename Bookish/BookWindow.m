@@ -9,9 +9,13 @@
 #import "BookWindow.h"
 #import <WebKit/WebKit.h>
 #import "Book.h"
+#import <objc/objc-class.h>
+#import "JRSwizzle.h"
 
 
 @implementation BookWindow
+
+BOOL SWIZZLED = NO;
 
 - (id)initWithContentRect:(NSRect)contentRect styleMask:(NSUInteger)aStyle backing:(NSBackingStoreType)bufferingType defer:(BOOL)flag {
     // This makes us a floaty utility window, but it isn't quite what we want.
@@ -20,8 +24,30 @@
 
     if (self) {
         // Initialize more?
+
+        if (!SWIZZLED) {
+            SWIZZLED = YES;
+            [self swizzleThemeFrameDrawRects];
+        }
     }
     return self;
+}
+
+- (void)swizzleThemeFrameDrawRects {
+    id themeFrameClass = [[self.contentView superview] class];
+
+    Method m = class_getInstanceMethod([self class], @selector(drawRect_frame:));
+    class_addMethod(themeFrameClass, @selector(drawRect_titlebar:), method_getImplementation(m), method_getTypeEncoding(m));
+
+    Method origMethod = class_getInstanceMethod(themeFrameClass, @selector(drawRect:));
+    Method newMethod = class_getInstanceMethod(themeFrameClass, @selector(drawRect_titlebar:));
+    method_exchangeImplementations(origMethod, newMethod);
+}
+
+- (void)drawRect_frame:(NSRect)rect {
+    NSLog(@"AWW YEAH DRAWIN");
+    //[self drawRect_titlebar:rect];
+    [[self superview] drawRect:rect];
 }
 
 - (BOOL)canBecomeKeyWindow {
