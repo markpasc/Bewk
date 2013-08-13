@@ -1,0 +1,42 @@
+- rm Format options and replace with new
+	- "Use book's style"
+	- Font: Georgia or Helvetica @done
+	- Size: little, big, really big? bed, knee, breakfast? @done
+	- Contrast?
+- cmd+ and - should go up/down sizes
+- display pages with margin @done
+- cover icon @done
+	- use cover as icon @done
+	- switch icon back when closing a window @done
+	- switch icon back when minimizing the window @done
+	- switch icon when a window opens (not just switching away and back?) @done
+- let multiple documents be open at once? @done
+	- Modern Perl gets Responsive Web Design's cover if you open RWD then MP @done
+- open external links in browser @done
+- open OPS/ books too @done
+- display cover.html without a margin
+	- try setting the body ID on the cover page?
+	- might need to do alternate CSS instead since book pages could set the body ID :/ 
+- go to next chapter when trying to continue past the end of the page
+	- Pgdn @done
+	- space @done
+	- scroll down?
+	- web forward at the end of browser history?
+- support "back" actions to return to the previous page @done
+- navigable TOC
+- keep place in book between openings?
+- hide XHTML parsing faults
+	- mindfulness in plain english
+- show nice error for encrypted epubs
+	- winnie the pooh
+- support mobi books
+	- different Book class i guess :S
+- undoable navigation
+- support droppable URLs
+	- what do they become?
+- bookshelf
+- full screen mode
+- display as pages?
+	- that don't scroll
+	- that flip/slide
+	- shrink webview so the visible margin is actually outside of it?
